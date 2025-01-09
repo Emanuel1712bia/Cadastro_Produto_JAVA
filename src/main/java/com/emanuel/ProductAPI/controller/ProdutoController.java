@@ -27,10 +27,14 @@ public class ProdutoController {
         return produto;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Produto ObterIdProduto(@PathVariable String id){
         Optional<Produto> produto = produtoRepository.findById(id);
         return produto.isPresent() ? produto.get() : null;
+    }
 
+    @DeleteMapping("{id}")
+    public void DeletarProduto(@PathVariable("id") String id){
+        produtoRepository.deleteById(id);
     }
 }
